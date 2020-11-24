@@ -1,0 +1,19 @@
+*.pyc
+*.mat
+*.bak
+*~
+crash*
+*.egg-info/*
+
+# examples data
+data/
+
+# Sphinx documentation
+doc/_build/
+doc/auto_examples/
+doc/generated/
+
+# build pypi
+build/
+dist/
+
