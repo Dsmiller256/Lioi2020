@@ -1,0 +1,87 @@
+---
+title: "Simultaneous EEG-fMRI during a neurofeedback task, a brain imaging dataset for multimodal data integration by Liol et al. (2020, Nature)"
+author: "Douglas Miller (email: dsmiller@stanford.edu)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+<!-- Reproducibility reports should all use this template to standardize reporting across projects. These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+## Introduction
+
+[No abstract is needed.]  Each reproducibility project will have a straightforward, no frills report of the study and reproducibility results. These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of your attempt to reproduce the results. Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for your reproducibility attempt, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+
+**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+
+### Justification for choice of study
+
+I have selected Lioi 2020 paper, as an excellent example of integrating fMRI and EEG analysis Pipelines. I have a background in fMRI analysis, but this paper will afford me the oppurtunity to expand my knowledge of EEG analysis and prepare me for my own project using fMRI-EEG to observe the attentions effects of memory.
+
+### Anticipated challenges
+
+The main challenge will be learning to properly integrate both modalities while accounting for the shared uncertainity inherit in both techniques. Likewise, the original code is designed for Brain Visions Software, however I plan to recode in EEGLAB. Which the paper says is an equivalent software.
+
+### Links
+
+Project repository (on Github): 
+https://github.com/Dsmiller256/Lioi2020
+
+Original paper (as hosted in your repo): 
+https://github.com/Dsmiller256/Lioi2020/blob/master/original_paper/Lioi_Nature_2020.pdf
+
+## Methods
+
+### Description of the steps required to reproduce the results
+
+The code base involves 3 major datasets. The EEG dataset in vhdr,eeg format, the fMRI dataset in nii format, and the .nf dataset.
+
+Participants will first run the newly designed code, eeg_analysis using MATLAB with the EEGLAB Package. By following this multi-step code you will fufill the requirements for cleaning and organizing the raw .eeg dataset (Automatic artifact correction, low pass filter, Downsampling, Segmentation based on marker, and save cleaned data), Following use the fMRI_preprocessing.ipynb pipeline in Python, which preprocesses the fMRI code using spm8.Lastly running NF_score which retrieves the NF behavior which is preprocessed by the EEG Brain Vision Machine real-time.
+
+With the loaded fMRI,EEG, and NF the source localization code should take these and develop a combined activation.
+
+### Differences from original study
+
+As previously mentioned, the EEG preprocessing was adapted from a lab code, as the authors did not respond to numerous attempts. In addition, the source localization code was adapted from another lab code.
+
+## Results
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+### Data and analysis was run in a combination of MATLAB(EEGLAB, Python and Fieldtrip) see code folder in Lioli2020.
+```
+
+### Key analysis
+
+The analyses as specified in the analysis plan. 
+
+As analysis was conducted primarily in MATLAB, figures created can be found in the following folders. 
+
+Behavioral analysis: Lioi2020/analysis/beh_analysis
+
+eeg_analysis
+Lioi2020/analysis/eeg_analysis
+
+fMRI_analysis:
+Lioi2020/analysis/fMRI_anlysis
+
+## Discussion
+
+### Summary of Reproduction Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the key analysis and assess whether you successfully reproduced it, partially reproduced it, or failed to reproduce it.  
+
+By using the provided code, I successfully replicated the preprocessing steps cleaning the EEG and fMRI datasets. However, the integration of fMRI/EEG has very restrictive demands for how the data must be structured. Without the original EEG code, I was unable to replicate the source localization code. Instead I reached out to a collaborator who provided a python pipeline called graphpype which has a source localization code. However, this was much too complex and dense for me to unpack even in the extra time provided. 
+
+### Commentary
+
+This project showed that merely having a brief description of steps and an open dataset is not enough to replicate complicated multi-step pipelines. Clear communication is needed to fulfill the desire for open science. Even with the extended time, I was unable to replicate the study with my makeshift code. With enough time I am sure I could develop equivalent pipelines to replicate, but this is beyond my current ability.
+
+Although I had extreme difficulty with this project, I thought it was a wonderful experience. It really drives home the importance of communication and open science as these multi-step pipelines are extreamly complicated and having to rebuild these pipelines every time seems problematic.  
