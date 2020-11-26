@@ -14,9 +14,24 @@ output:
 
 ## Introduction
 
-[No abstract is needed.]  Each reproducibility project will have a straightforward, no frills report of the study and reproducibility results. These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of your attempt to reproduce the results. Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for your reproducibility attempt, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+When starting to delve into academic research their are two major questions that need to be asked. What is the question I am trying to solve? How do I support my hypothesis? The second part of this process is a key focus of Lioi et al 2020. When attempting to solve a question it is important to ask oneself what method is best used to address the problem. Each method has it's own strengths and weaknesses. For example, survey data can be gathered quick and yield great insight into an individual's mindset. However, it does not reveal implicit knowledge the indiviual might have. It is also biased by the individual's own intrinsic motivations. This paper looks at 3 different methodologies and attempts to integrate them yielding a new pipeline for analysis. 
+
+Cognitive awareness and control plays a major role in clinical treatment and therapies. With this in mind, Lioi et al used a NF(NeuroFeedback) design in which participants where made aware of their own brain activation and attempted to modulate targeted brain regions in real-time. This strategy attempts to train self-regulation of key brain regions and is a promising rehabilitation technique for neuropathology. 
+
+In order to use the NF method patients have knowledge of their brain activity. Two techniques were used to measure brain activity, fMRI which has a high spatial resolution allowing for precise identification of the brain region being targeted, and EEG which allows for millisecond timing enabling real-time feedback. By combining these two modalaties with a behavioral metric targeted training of brain regions in real-time is possible. 
+
+In this paper, descriptions of individual pipelines for fMRI and EEG Preprocessing are provided. In addition the behavioral task is completed using fMRI, EEG, and fMRI-EEG allowing a separation of each techniques predictive power of the true fMRI-EEG. In this paper many important results are presented. However, for this replication I plan to focus on two analysis. 
 
 **Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+
+1.Integrate fMRI and EEG with the source localization code to replicate figure 8.
+
+2. Use model to predict fMRI analysis through EEG-NF integration. The papers model had a median correlated 0.34 with the ground truth as shown in figure 9b.
+
+As result 1 presents a 3d image of a brain with activity patterns, my goal will be to replicate this image, looking for consistency in the peak activity along the XYZ space. 
+
+As result 2 yields a correlation of 0.34, this will be my key analysis of interest to identify if the replication was successful. 
+
 
 ### Justification for choice of study
 
@@ -43,6 +58,8 @@ The code base involves 3 major datasets. The EEG dataset in vhdr,eeg format, the
 Participants will first run the newly designed code, eeg_analysis using MATLAB with the EEGLAB Package. By following this multi-step code you will fufill the requirements for cleaning and organizing the raw .eeg dataset (Automatic artifact correction, low pass filter, Downsampling, Segmentation based on marker, and save cleaned data), Following use the fMRI_preprocessing.ipynb pipeline in Python, which preprocesses the fMRI code using spm8.Lastly running NF_score which retrieves the NF behavior which is preprocessed by the EEG Brain Vision Machine real-time.
 
 With the loaded fMRI,EEG, and NF the source localization code should take these and develop a combined activation.
+
+Replicate the model taking EEG-NF scores and predicting the fMRI-NF scores from frequency bands 8-30hz.
 
 ### Differences from original study
 
