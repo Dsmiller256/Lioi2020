@@ -6,12 +6,12 @@
 cd ..;
 
 basedir = [pwd filesep];
-scriptdir = [basedir,'analysis' filesep 'eeg_analysis' filesep];
+savedir = [basedir,'analysis' filesep 'eeg_analysis' filesep];
 datadir = [basedir,'rawdata' filesep];
 eegdir = [basedir, 'eeglab' filesep];
-savedir = [datadir, 'derivatives' filesep];
 
-addpath(genpath(scriptdir));
+
+addpath(genpath(savedir));
 addpath(genpath(basedir));
 addpath(genpath(eegdir));
 
@@ -99,10 +99,7 @@ for subj = 1:length(group)
                 save('rejected_channels', 'reject_indices');
                 
                 %% Save out data
-                cd (savedir)
-                if ~exist(group{subj}, 'dir')
-                    mkdir(group{subj})
-                   
+                cd (savedir)     
                     [ALLEEG,EEG,CURRENTSET] = pop_newset(ALLEEG,EEG,1,'setname', ...
                         ['s',num2str(r)],'savenew',['s',r, ...
                         '.set'],'overwrite','on','gui','off');
